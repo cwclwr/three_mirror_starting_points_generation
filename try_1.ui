@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainWindow</class>
+ <widget class="QMainWindow" name="mainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>770</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="formLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>150</y>
+      <width>391</width>
+      <height>277</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="1">
+      <widget class="QPushButton" name="pushButton_7">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QPushButton" name="pushButton_10">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QPushButton" name="pushButton_6">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QPushButton" name="pushButton_11">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QPushButton" name="pushButton_8">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QPushButton" name="pushButton_9">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="pushButton_12">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="pushButton_13">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>需要输入的系统参数：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>需要预测的总系统参数个数</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="text">
+          <string>输出系统个数</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="text">
+        <string>1</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="pushButton_5">
+       <property name="text">
+        <string>2</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QComboBox" name="comboBox">
+       <item>
+        <property name="text">
+         <string>mtf</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>relative disrotion</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>volume</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>rms</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>error function</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>770</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>自己</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>属性</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menus">
+    <property name="title">
+     <string>s刷新</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>不需要工具栏</string>
+    </property>
+    <widget class="QMenu" name="menuhaixuyao">
+     <property name="title">
+      <string>haixuyao </string>
+     </property>
+     <addaction name="separator"/>
+     <addaction name="actionvery_good"/>
+     <addaction name="actionnice_baby"/>
+    </widget>
+    <widget class="QMenu" name="menuthree">
+     <property name="title">
+      <string>three</string>
+     </property>
+     <addaction name="actionziyouzizai"/>
+    </widget>
+    <addaction name="separator"/>
+    <addaction name="menuhaixuyao"/>
+    <addaction name="separator"/>
+    <addaction name="actionnice"/>
+    <addaction name="separator"/>
+    <addaction name="menuthree"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menus"/>
+   <addaction name="menu_3"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionnice">
+   <property name="text">
+    <string>nice</string>
+   </property>
+  </action>
+  <action name="actionziyouzizai">
+   <property name="text">
+    <string>ziyouzizai </string>
+   </property>
+  </action>
+  <action name="actionvery_good">
+   <property name="text">
+    <string>very good</string>
+   </property>
+  </action>
+  <action name="actionnice_baby">
+   <property name="text">
+    <string>nice baby</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
