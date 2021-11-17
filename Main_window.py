@@ -37,6 +37,9 @@ class Main_window(QMainWindow):
         top = (screen_size.height() - window_size.height())/2
         self.move(left,top)
 
+    # def addaction(self):
+    #     self.actions = self.action
+
     def my_button(self):
         pass
 
