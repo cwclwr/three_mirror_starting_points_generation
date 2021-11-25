@@ -2,18 +2,19 @@
 author == Wenchen Chen
 encoding  = utf-8
 '''
+
+
 import sys
 
 import pyqtgraph
 from PyQt5.QtCore import Qt
-from PyQt5 import *
+
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-from Generate_test_sys_parameter import *
+
+class Main_window(QWidget):
 
 
-class Main_window(QMainWindow):
     def __init__(self):
         super(Main_window,self).__init__()
         self.iniUI()
@@ -41,61 +42,54 @@ class Main_window(QMainWindow):
         label10 = QLabel('预测系统个数：')
         label11 = QLabel('保留系统个数：')
         label12 = QLabel('   筛选指标： ')
-        self.save_file_Bt = QPushButton('文件保存位置：')
-        self.save_file_Bt.clicked.connect(self.msg)
+        label13 = QLabel('文件保存位置：')
 
 
 
 
-        self.start_button = QPushButton('开始预测系统')
-        self.start_button.clicked.connect(self.onClick_Button)
-        self.stop_button = QPushButton('强制停止预测系统')
-        self.stop_button.setIcon(QIcon('./images/Banshee.ico'))
-        self.stop_button.clicked.connect(self.show_warnin_Dialog)
-
-
-
-
-
-
+        start_button = QPushButton('开始预测系统')
+        start_button.clicked.connect(self.onClick_Button)
+        stop_button = QPushButton('强制停止预测系统')
+        stop_button.setIcon(QIcon('./images/Banshee.ico'))
+        stop_button.clicked.connect(self.onClick_Button)
 
         self.checkbox = QCheckBox('预测系统需要进行优化')
         self.checkbox.stateChanged.connect(self.checkboxStatus)
+
+
+
         self.XFOV = QLineEdit()
         self.XFOV.setPlaceholderText('请输入X方向半视场，1°-15°')
-        self.XFOV.editingFinished.connect(self.get_text)
+        self.XFOV.editingFinished.connect(self.onClickd)
         self.YFOV = QLineEdit()
         self.YFOV.setPlaceholderText('请输入Y方向半视场，1°-15°')
         self.EPD = QLineEdit()
         self.EPD.setPlaceholderText('请输入入瞳直径，12.5mm - 66mm')
-        self.s2yde = QLineEdit()
-        self.s2yde.setPlaceholderText('请输入第一个曲面的Y方向偏心，50mm - 100mm')
-        self.s2zde = QLineEdit()
-        self.s2zde.setPlaceholderText('请输入第一个面的Z方向偏心，100mm-350mm')
-        self.s4yde = QLineEdit()
-        self.s4yde.setPlaceholderText('请输入第3个面的Y方向偏心，-100mm - 50mm')
-        self.s4zde = QLineEdit()
-        self.s4zde.setPlaceholderText('请输入第3个面的Z方向偏心，150mm - 350mm')
-        self.siyde = QLineEdit()
-        self.siyde.setPlaceholderText('请输入像面的Y方向偏心，-120mm - -20mm')
-        self.sizde = QLineEdit()
-        self.sizde.setPlaceholderText('请输入像面的Z方向偏心，-80mm - 80mm')
-        self.predict_sys_num = QLineEdit()
-        self.predict_sys_num.editingFinished.connect(self.get_text)
-        self.save_sys_num = QLineEdit()
-        self.save_sys_num.editingFinished.connect(self.get_text)
-        self.merit_box = QComboBox()
-        self.merit_box.addItems(['Error function','RMS','Abs distortion','X_rel_distortion','Y_rel_distortion','s2 yde',
+        line4 = QLineEdit()
+        line4.setPlaceholderText('请输入第一个曲面的Y方向偏心，50mm - 100mm')
+        line5 = QLineEdit()
+        line5.setPlaceholderText('请输入第一个面的Z方向偏心，100mm-350mm')
+        line6 = QLineEdit()
+        line6.setPlaceholderText('请输入第3个面的Y方向偏心，-100mm - 50mm')
+        line7 = QLineEdit()
+        line7.setPlaceholderText('请输入第3个面的Z方向偏心，150mm - 350mm')
+        line8 = QLineEdit()
+        line8.setPlaceholderText('请输入像面的Y方向偏心，-120mm - -20mm')
+        line9 = QLineEdit()
+        line9.setPlaceholderText('请输入像面的Z方向偏心，-80mm - 80mm')
+        line10 = QLineEdit()
+        line11 = QLineEdit()
+        self.line_box = QComboBox()
+        self.line_box.addItems(['Error function','RMS','Abs distortion','X_rel_distortion','Y_rel_distortion','s2 yde',
                            's4 yde','s2 s4 yde','s2 zde','s4 zde','s2 s4 zde','distance1','distance2','distance3',
                            'distance4','distance5','Volume','MTF'])
 
-        self.merit_box.currentIndexChanged.connect(self.selection_change)
-        self.save_file_line = QLineEdit()
+        self.line_box.currentIndexChanged.connect(self.selection_change)
+        line13 = QLineEdit()
 
         OKbutton = QPushButton('确认当前文件')
         OKbutton.clicked.connect(self.print_current_sys)
         OKbutton.clicked.connect(self.judge_system_parameters_appropriate)
-        OKbutton.clicked.connect(self.show_status)
 
         vlayout1 = QVBoxLayout()
         vlayout2 = QVBoxLayout()
@@ -124,33 +118,32 @@ class Main_window(QMainWindow):
         hlayout3.addWidget(label3)
         hlayout3.addWidget(self.EPD)
         hlayout4.addWidget(label4)
-        hlayout4.addWidget(self.s2yde)
+        hlayout4.addWidget(line4)
         hlayout5.addWidget(label5)
-        hlayout5.addWidget(self.s2zde)
+        hlayout5.addWidget(line5)
         hlayout6.addWidget(label6)
-        hlayout6.addWidget(self.s4yde)
+        hlayout6.addWidget(line6)
         hlayout7.addWidget(label7)
-        hlayout7.addWidget(self.s4zde)
+        hlayout7.addWidget(line7)
         hlayout8.addWidget(label8)
-        hlayout8.addWidget(self.siyde)
+        hlayout8.addWidget(line8)
         hlayout9.addWidget(label9)
-        hlayout9.addWidget(self.sizde)
+        hlayout9.addWidget(line9)
 
 
         hlayout10.addWidget(label10)
-        hlayout10.addWidget(self.predict_sys_num)
+        hlayout10.addWidget(line10)
         hlayout11.addWidget(label11)
-        hlayout11.addWidget(self.save_sys_num)
+        hlayout11.addWidget(line11)
         hlayout12.addWidget(label12)
-        hlayout12.addWidget(self.merit_box)
+        hlayout12.addWidget(self.line_box)
 
-        hlayout13.addWidget(self.save_file_Bt)
-        hlayout13.addWidget(self.save_file_line)
-        control_layout.addWidget(self.start_button)
-        control_layout.addWidget(self.stop_button)
+        hlayout13.addWidget(label13)
+        hlayout13.addWidget(line13)
+        control_layout.addWidget(start_button)
+        control_layout.addWidget(stop_button)
 
         # 设置第一列为垂直方向布局
-        vlayout1.addStretch(2)
         vlayout1.addLayout(hlayout1)
         vlayout1.addLayout(hlayout2)
         vlayout1.addLayout(hlayout3)
@@ -161,7 +154,6 @@ class Main_window(QMainWindow):
         vlayout1.addLayout(hlayout8)
         vlayout1.addLayout(hlayout9)
         vlayout1.addWidget(OKbutton)
-        vlayout1.addStretch(1)
         # 添加第二列
         vlayout2.addLayout(hlayout10)
         vlayout2.addLayout(hlayout11)
@@ -174,13 +166,8 @@ class Main_window(QMainWindow):
         main_layout.addLayout(vlayout1)
         main_layout.addLayout(vlayout2)
 
-        self.statusBar = QStatusBar()
-        self.setStatusBar(self.statusBar)
 
-        main_frame = QWidget()
-        main_frame.setLayout(main_layout)
-        self.setCentralWidget(main_frame)
-
+        self.setLayout(main_layout)
 
 
 
@@ -191,57 +178,37 @@ class Main_window(QMainWindow):
         top = (screen_size.height() - window_size.height())/2
         self.move(left,top)
 
-    def show_status(self):
-        self.statusBar.showMessage('当前输入超出范围')
-
-    def show_warnin_Dialog(self):
-        messageBox = QMessageBox(QMessageBox.Warning, "Stop?", "stop the prediction program?")
-        messageBox.setWindowIcon(QIcon(":/newPrefix/logo.ico"))
-        Qyes = messageBox.addButton(self.tr("ok"), QMessageBox.YesRole)
-        Qyes.clicked.connect(self.stop_program)
-        Qno = messageBox.addButton(self.tr("cancel"), QMessageBox.NoRole)
-
-        messageBox.setWindowModality(Qt.ApplicationModal)
-        messageBox.exec_()
-
-    def msg(self):
-        openfile_name = QFileDialog.getExistingDirectory(None,"选取文件夹","C:/")  # 起始路径
-        self.save_file_line.setText(openfile_name)
-        print(openfile_name)
-
-
 
     def print_current_sys(self):
 
         XFOV = float(self.XFOV.text())
         YFOV = float(self.YFOV.text())
         EPD = float(self.EPD.text())
-        total_sys_num = int(self.predict_sys_num.text())
-        generarate_test_sys_parameters(XFOV=XFOV,YFOV=YFOV,EPD=EPD,total_sys_num=total_sys_num)
         current_sys = [XFOV,YFOV,EPD]
 
         print(current_sys)
 
     def judge_system_parameters_appropriate(self):
         print('xfov:',XFOV,'YFOV',YFOV,'EPD',EPD)
-        if XFOV <= 15 and YFOV <= 15 and EPD <= 200/3 and (XFOV*4 + EPD) < (236/3+1e-5) \
-                and (YFOV*4 + EPD) < (236/3+1e-5) and (XFOV + YFOV) < 25:
+        if XFOV <= 15 and YFOV <= 15 and EPD <= 200/3 and (XFOV*4 + EPD)<200 and (YFOV*4 + EPD)<200 and (XFOV + YFOV)<25 :
             pass
         else:
             print('the system parameters are beyond the boundary')
-    def get_text(self):
+    def onClickd(self):
         sender = self.sender()
+        print(type(sender.text()))
         print(sender.text())
 
     def stop_program(self):
         app = QApplication.instance()
+        # 退出应用程序
         app.quit()
     def onClick_Button(self):
         sender = self.sender()
         print(sender.text() + ' 按钮被按下')
 
     def selection_change(self):
-        print('当前筛选标准为:',self.merit_box.currentText())
+        print('当前筛选标准为:',self.line_box.currentText())
 
 
 
@@ -259,6 +226,7 @@ class Main_window(QMainWindow):
 
 # system_mode = 0
 # print('初始的system model为:',system_mode)
+
 XFOV = 0
 YFOV = 0
 EPD = 0
@@ -268,6 +236,7 @@ if __name__ == "__main__":
     window = Main_window()
     window.show()
     sys.exit(app.exec_())
+
 
 
 
